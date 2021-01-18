@@ -35,7 +35,7 @@ body {
 
 .character {
 	position: absolute;
-	width: auto;
+	width: auto; /* keep aspect ratio */
 	height: 95%;
 	bottom: 0%;
 	left: 50%;
