@@ -37,7 +37,7 @@ html, body {
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
-
+	
 	transform: translateX(-230px);
 	-ms-transform: translateX(-230px);
 }
