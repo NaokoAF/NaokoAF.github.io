@@ -9,6 +9,11 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="script.js"></script>
 </head>
+<script> 
+	$(function(){
+	  $("#header").load("/header.html"); 
+	});
+</script>
 <body onload="onLoad()">
 	<div class="bg"></div>
 
@@ -59,12 +64,6 @@
 	</div>
 
 
-	<div class="header">
-		<a href="/" class="title">NAOKO</a>
-
-		<div class="header-pages">
-			<a href="/faq">FAQ</a>
-		</div>
-	</div>
+	<div id="header"></div>
 </body>
 </html>

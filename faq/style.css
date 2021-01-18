@@ -1,8 +1,8 @@
 html, body {
-	margin: initial;
-	height: initial;
+	margin: 0px;
+	height: 100%;
 	overflow: initial;
-	overflow-x: initial;
+	overflow-x: hidden;
 }
 
 body {
