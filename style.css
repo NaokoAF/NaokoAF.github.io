@@ -1,4 +1,8 @@
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden
+}
 
 .bg {
 	background-image: url("images/background.jpg");
@@ -126,5 +130,14 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 		width: 95%;
 		transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
+
+		padding-top: 10px;
+		padding-bottom: 20px;
+		background-color: #353042a2;
+		box-shadow: 2px 2px 8px #000000CC;
 	} 
+
+	.socials{
+		height: 28px;
+	}
 }
