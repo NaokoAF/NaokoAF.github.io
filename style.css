@@ -4,6 +4,10 @@ html, body {
 	overflow: hidden
 }
 
+.all {
+	opacity: 0;
+}
+
 .bg {
 	background-image: url("images/background.jpg");
 	width: 100%;
@@ -12,26 +16,17 @@ html, body {
 	background-repeat: repeat;
 	background-size: 1200px;
 
-	animation: animation 100s linear infinite;
+	animation: bg-anim 100s linear infinite;
 	/*filter: brightness(80%);*/
 }
 
-@keyframes animation {
+@keyframes bg-anim {
 	100%{
 		background-position:1000px -1500px;
 	}
 }
 
 
-.center {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 700px;
-
-	transform: translate(-20%, -50%);
-	-ms-transform: translate(-20%, -50%);
-}
 
 .character {
 	position: absolute;
@@ -43,8 +38,18 @@ html, body {
 	background-size: contain;
 	background-repeat: no-repeat;
 
-	transform: translateX(-18%);
-	-ms-transform: translateX(-18%);
+	transform: translateX(-230px);
+	-ms-transform: translateX(-230px);
+}
+
+.center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 700px;
+
+	transform: translate(calc(-50% + 210px), -50%);
+	-ms-transform: translate(calc(-50% + 210px), -50%);
 }
 
 .center h2{
@@ -119,7 +124,7 @@ html, body {
 
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
 	.character {
 		height: 100%;
 		transform: translateY(3%);
@@ -127,7 +132,7 @@ html, body {
 	} 
 
 	.center {
-		width: 95%;
+		width: 90%;
 		transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
 
