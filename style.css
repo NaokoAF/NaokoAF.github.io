@@ -112,7 +112,13 @@ body {
 
 .sc {
 	height: 100%;
+	transition: 0.1s;
 }
+
+.sc:hover{
+	transform: scale(120%) rotate(5deg);
+}
+
 
 .discord{
 	margin-top: 20px;
