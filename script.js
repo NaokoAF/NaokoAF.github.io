@@ -13,7 +13,7 @@ function onLoad(){
 
 	let characterObj = document.getElementsByClassName("character")[0];
 	characterObj.src = getRandomImage();
-
+	
 	$(".all").animate({ opacity: 1 }, 500);
 }
 
