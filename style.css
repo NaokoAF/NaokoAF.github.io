@@ -27,7 +27,7 @@ body {
 
 @keyframes bg-anim {
 	100%{
-		background-position:1000px -1500px;
+		background-position: 1000px -1500px;
 	}
 }
 
@@ -40,9 +40,9 @@ body {
 	bottom: 0%;
 	left: 50%;
 	background-repeat: no-repeat;
-	
+	user-select: none;
+
 	transform: translateX(calc(-50% - 230px));
-	-ms-transform: translateX(calc(-50% - 230px));
 }
 
 .center {
@@ -52,7 +52,6 @@ body {
 	width: 700px;
 
 	transform: translate(calc(-50% + 210px), -50%);
-	-ms-transform: translate(calc(-50% + 210px), -50%);
 }
 
 .center h2{
@@ -106,8 +105,9 @@ body {
 	box-shadow: 2px 2px 10px #000000CC;
 }
 
-.socials a{
+.socials a {
 	text-decoration: none;
+	user-select: none;
 }
 
 .sc {
@@ -115,18 +115,19 @@ body {
 	transition: 0.1s;
 }
 
-.sc:hover{
+.sc:hover {
 	transform: scale(120%) rotate(5deg);
 }
 
 
-.discord{
+.discord {
 	margin-top: 20px;
 	height: 60px;
 	text-align: center;
+	user-select: none;
 }
 
-.discord img{
+.discord img {
 	height: 100%;
 	box-shadow: 2px 2px 10px #000000CC;
 }
@@ -137,21 +138,19 @@ body {
 	.character {
 		height: 100%;
 		transform: translate(-50%, 20px);
-		-ms-transform: translate(-50%, 20px);
 	} 
 
 	.center {
 		width: 90%;
 		transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
 
 		padding-top: 10px;
 		padding-bottom: 20px;
 		background-color: #353042a2;
 		box-shadow: 2px 2px 8px #000000CC;
-	} 
+	}
 
-	.socials{
+	.socials {
 		height: 28px;
 	}
 }
