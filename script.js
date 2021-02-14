@@ -4,7 +4,8 @@ const age = getAge(birthdayDate);
 const images = [
 	"duckface",
 	"finger_smile",
-	"rawr"
+	"rawr",
+	"pocket"
 ]
 
 function onLoad(){
