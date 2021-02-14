@@ -2,9 +2,9 @@ const birthdayDate = new Date(2003, 12, 17);
 const age = getAge(birthdayDate);
 
 const images = [
-	"images/naoko/duckface.png",
-	"images/naoko/finger_smile.png",
-	"images/naoko/rawr.png"
+	"duckface",
+	"finger_smile",
+	"rawr"
 ]
 
 function onLoad(){
@@ -14,7 +14,7 @@ function onLoad(){
 	let characterObj = document.getElementsByClassName("character")[0];
 	characterObj.src = getRandomImage();
 
-	$(".all").animate({ opacity: 1 }, 500);
+	document.getElementById("all").className += "Animate";
 }
 
 function getAge(birthDate) {
@@ -30,5 +30,5 @@ function getAge(birthDate) {
 
 function getRandomImage(){
 	let index = Math.floor(Math.random() * images.length);
-	return images[index];
+	return "assets/naoko/" + images[index] + ".png";
 }
