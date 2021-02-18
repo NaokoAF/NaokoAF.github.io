@@ -12,8 +12,8 @@ function onLoad(){
 	let textObj = document.getElementsByClassName("bio")[0];
 	textObj.innerHTML = textObj.innerHTML.replace('%age%', age);
 
-	let characterObj = document.getElementsByClassName("character")[0];
-	characterObj.src = getRandomImage();
+	/*let characterObj = document.getElementsByClassName("character")[0];
+	characterObj.src = getRandomImage();*/
 
 	document.getElementById("all").className += "Animate";
 }
