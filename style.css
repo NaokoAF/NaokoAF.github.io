@@ -151,7 +151,7 @@ body {
 	.character {
 		left: 50%;
 		transform: translateX(-50%);
-		filter: brightness(80%);
+		filter: blur(3px);
 	} 
 
 	.wrapper { left: 0%; }
