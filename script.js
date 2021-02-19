@@ -30,5 +30,5 @@ function getAge(birthDate) {
 
 function getRandomImage(){
 	let index = Math.floor(Math.random() * images.length);
-	return "_assets/naoko/" + images[index] + ".png";
+	return "assets/naoko/" + images[index] + ".png";
 }
