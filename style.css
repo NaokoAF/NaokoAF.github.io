@@ -44,18 +44,16 @@ body {
 	position: absolute;
 	width: auto; /* keep aspect ratio */
 	height: 100%;
-	left: 0%;
+	left: 28%;
 	user-select: none;
+	
+	transform: translateX(-50%);
 }
 
 .texts {
 	width: max-content;
 	margin-left: auto;
 	margin-right: auto;
-
-	/*background-color: #353042a2;
-	box-shadow: 2px 2px 8px #000000CC;
-	padding: 20px;*/
 }
 
 
@@ -151,8 +149,12 @@ body {
 	.character {
 		left: 50%;
 		transform: translateX(-50%);
-		filter: blur(3px);
+		filter: blur(3px) brightness(80%);
 	} 
+	
+	/*.bg {
+		filter: blur(3px) brightness(80%);
+	}*/
 
 	.wrapper { left: 0%; }
 
