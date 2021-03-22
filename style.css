@@ -29,7 +29,6 @@ body {
 	background-size: 1300px 1300px;
 
 	animation: bg-anim 50s linear infinite;
-	/*filter: brightness(80%);*/
 }
 
 @keyframes bg-anim {
@@ -44,7 +43,7 @@ body {
 	position: absolute;
 	width: auto; /* keep aspect ratio */
 	height: 100%;
-	left: 28%;
+	left: 35%;
 	user-select: none;
 	
 	transform: translateX(-50%);
@@ -148,13 +147,12 @@ body {
 @media only screen and (max-width: 900px) {
 	.character {
 		left: 50%;
-		transform: translateX(-50%);
-		filter: blur(3px) brightness(80%);
+		filter: blur(4px);
 	} 
 	
-	/*.bg {
-		filter: blur(3px) brightness(80%);
-	}*/
+	.bg {
+		filter: blur(4px);
+	}
 
 	.wrapper { left: 0%; }
 
