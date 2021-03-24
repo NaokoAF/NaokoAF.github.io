@@ -14,12 +14,12 @@ body {
 }
 
 #bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 0;
 	background: url("assets/background.jpg");
 	background-repeat: repeat;
 	background-size: 1300px 1300px;
@@ -36,40 +36,40 @@ body {
 
 
 .flexbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 
 .break {
-    flex-basis: 100%;
-    height: 0;
+	flex-basis: 100%;
+	height: 0;
 }
 
 
 
 
 #content {
-    z-index: 10;
+	z-index: 10;
 	margin: 20px;
 	padding: 30px;
 	
 	background: rgba(20, 0, 10, 0.65);
 	border-radius: 50px;
-    border-color: #FF298C;
-    border-style: solid;
-    border-width: 5px;
+	border-color: #FF298C;
+	border-style: solid;
+	border-width: 5px;
 }
 
 #avatar {
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    border-color: #FF298C;
-    border-style: solid;
-    border-width: 8px;
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	border-color: #FF298C;
+	border-style: solid;
+	border-width: 8px;
 }
 
 
@@ -104,47 +104,47 @@ body {
 }
 
 .linkWrapper {
-    flex: none;
+	flex: none;
 }
 
 .link {
-    height: 40px;
-    width: 40px;
-    flex: none;
+	height: 40px;
+	width: 40px;
+	flex: none;
 	user-select: none;
-    transition: 0.2s ease-in-out;
+	transition: 0.2s ease-in-out;
 }
 
 .linkWrapper .subtitle {
-    position: absolute;
-    font-size: 14px;
-    margin-top: 42px;
-    display: none;
-    opacity: 0;
+	position: absolute;
+	font-size: 14px;
+	margin-top: 42px;
+	display: none;
+	opacity: 0;
 }
 
 .linkWrapper:hover .link {
-    transform: translateY(-10px);
+	transform: translateY(-10px);
 }
 
 .linkWrapper:hover .subtitle {
-    display: block;
-    opacity: 1;
-    animation: fadein 0.5s;
+	display: block;
+	opacity: 1;
+	animation: fadein 0.5s;
 }
 
 #links {
-    display: flex;
+	display: flex;
 	width: 100%;
-    justify-content: space-evenly;
-    flex-direction: row;
-    flex-wrap: wrap;
+	justify-content: space-evenly;
+	flex-direction: row;
+	flex-wrap: wrap;
 	margin: 25px 0px;
 }
 
 /* spacing */
 #links>* {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 
@@ -163,19 +163,19 @@ body {
 
 
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @keyframes fadeout {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
