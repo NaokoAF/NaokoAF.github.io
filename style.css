@@ -10,16 +10,6 @@ body {
 	position: relative;
 }
 
-#all {
-	opacity: 0;
-}
-
-#all.Animate{
-    transition: 0.8s cubic-bezier(.29,.44,.52,.81);
-	transition-delay: 0.3s;
-	opacity: 1;
-}
-
 .bg {
 	position: absolute;
 	width: 100%;
@@ -75,22 +65,13 @@ body {
 	font-family: Arial, sans-serif;
 }
 
-.texts h2 {
+.texts h1 {
 	margin: 0px;
 	line-height: 40px;
 	font-size: 45px;
-	letter-spacing: 8px;
+	letter-spacing: 4px;
 	font-weight: bold;
 	text-shadow: 2px 2px 10px #000000A0;
-}
-
-.texts h1 {
-	margin: 0px;
-	margin-top: 10px;
-	font-size: 35px;
-	letter-spacing: 2px;
-	font-weight: 400;
-	text-shadow: 1px 1px 10px #000000CC;
 }
 
 .texts p {
