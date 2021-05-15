@@ -126,6 +126,7 @@ body {
 	.character {
 		left: 50%;
 		filter: blur(4px);
+		transform: translateX(-50%) scale(1.05);
 	} 
 	
 	.bg {
