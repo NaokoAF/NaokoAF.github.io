@@ -132,7 +132,7 @@ body {
 		filter: blur(4px);
 	}
 
-	.wrapper { left: 0%; }
+	.content { left: 50%; }
 
 	.center { width: 90%; }
 
