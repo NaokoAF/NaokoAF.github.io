@@ -121,7 +121,7 @@ body {
 }
 
 
-
+/* Mobile */
 @media only screen and (max-width: 900px) {
 	.character {
 		left: 50%;
@@ -129,9 +129,7 @@ body {
 		transform: translateX(-50%) scale(1.05);
 	} 
 	
-	.bg {
-		filter: blur(4px);
-	}
+	.bg { filter: blur(4px); }
 
 	.content { left: 50%; }
 
@@ -140,4 +138,11 @@ body {
 	.texts { width: 100%; }
 
 	.socials { height: 28px; }
+}
+
+/* Small resolution */
+@media only screen and (max-width: 420px), screen and (max-height: 300px) {
+	.content {
+		transform: translate(-50%, -50%) scale(0.7);
+	} 
 }
