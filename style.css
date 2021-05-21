@@ -112,16 +112,15 @@ body {
 
 .discord {
 	margin-top: 20px;
-	height: 60px;
 	text-align: center;
 	transition: transform 0.1s;
 }
 
 .discord img {
+	width: 296px;
+	height: 60px;
 	background: #353042 url('./assets/discord_bg.png');
 	background-size: cover;
-	
-	height: 100%;
 	box-shadow: 2px 2px 10px #000000CC;
 	border-radius: 12px;
 }
