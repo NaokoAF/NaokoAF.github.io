@@ -8,6 +8,10 @@ body {
 	overflow-x: hidden;
 }
 
+:root {
+  color-scheme: dark;
+}
+
 
 /* Generic */
 .center {
