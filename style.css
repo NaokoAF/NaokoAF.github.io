@@ -96,13 +96,16 @@ body {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	margin: 10px;
+	padding: 10px;
 	color: #99a;
+	background-color: var(--background-secondary);
+	border-radius: 20px 0px 0px 20px;
 	font-size: 0.75em;
 	text-align: right;
 }
 
 .landing-footer a, .landing-footer i {
+	text-decoration: none;
 	color: var(--accent-color);
 }
 
