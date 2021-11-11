@@ -115,7 +115,7 @@ body {
 	text-align: right;
 }
 
-.landing-footer a, .landing-footer i {
+.landing-footer a {
 	text-decoration: none;
 	color: var(--accent-color);
 }
