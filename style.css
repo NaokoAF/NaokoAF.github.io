@@ -55,9 +55,17 @@ body {
 
 
 /* Landing page */
+.landing-grid {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 70vh auto;
+}
+
 .landing-content {
 	text-align: center;
 	padding: 20px;
+	z-index: 5;
 }
 
 .landing-title {
@@ -103,6 +111,17 @@ body {
 }
 
 
+.character-container{
+	position: relative;
+}
+
+.character {
+	height: 100vh;
+	margin-left: 3vw;
+	z-index: -1;
+}
+
+
 .landing-footer {
 	position: absolute;
 	bottom: 0;
@@ -113,6 +132,7 @@ body {
 	border-radius: 20px 0px 0px 20px;
 	font-size: 0.75em;
 	text-align: right;
+	z-index: 10;
 }
 
 .landing-footer a {
@@ -129,8 +149,9 @@ body {
 }
 
 
-/* Mobile  */
-@media only screen and (max-width: 768px){
+/* Mobile */
+@media only screen and (max-width: 900px),
+						screen and (max-aspect-ratio: 11/9){
 	.desktop {
 		display: none;
 	}
@@ -139,19 +160,43 @@ body {
 		display: block;
 	}
 
+	/* Reduce icon size  */
 	.social-icon {
 		height: 1.5em;
 	}
 
+	/* Change grid to rows  */
+	.landing-grid {
+		grid-template-columns: none;
+		grid-template-rows: 40% auto;
+	}
+
+	/* Decrease text size and add drop shadow  */
 	.landing-title {
 		font-size: 4em;
+		filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
 	}
 
 	.landing-subtitle {
-		font-size: 1em;
+		font-size: 1.2em;
+		filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.8));
 	}
 
-	.social-icon {
-		height: 1.5em;
+	/* Center character */
+	.character {
+		position: absolute;
+		margin: 0;
+		top: 0;
+		left: 50%;
+		height: 100vh;
+		transform: translateX(calc(-50% - 3vh));
+	}
+
+
+	/* Center text on low screen height */
+	@media only screen and (max-height: 500px){
+		.landing-grid {
+			grid-template-rows: 0 auto;
+		}
 	}
 }
