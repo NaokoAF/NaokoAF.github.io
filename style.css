@@ -141,8 +141,8 @@ body {
 }
 
 
-/* Stuff */
-.stuff {
+/* Sections */
+.secret-section {
 	height: 100px;
 	background-color: var(--background-secondary);
 	/*filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));*/
