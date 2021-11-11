@@ -1,15 +1,13 @@
 body {
 	margin: 0;
 	background-color: var(--background-primary);
-	
 	color: white;
 	font-family: 'Raleway', sans-serif;
-	
 	overflow-x: hidden;
 }
 
 :root {
-	color-scheme: dark;
+	color-scheme: dark;	/* Makes scrollbar dark */
 
 	--accent-color: #ff84bd;
 	--background-primary: #403349;
@@ -28,9 +26,7 @@ body {
 }
 
 
-
-
-/* Landing page */
+/* Blobs */
 .blobs-container {
 	position: absolute;
 	width: 100%;
@@ -49,6 +45,8 @@ body {
 	filter: brightness(70%);
 }
 
+
+/* Landing page */
 .landing-title {
 	font-size: 6em;
 	font-weight: 900;
@@ -64,7 +62,6 @@ body {
 	letter-spacing: 0.08em;
 	text-align: center;
 }
-
 
 .socials {
 	display: flex;
@@ -95,8 +92,6 @@ body {
 }
 
 
-
-
 .landing-footer {
 	position: absolute;
 	bottom: 0;
@@ -110,7 +105,6 @@ body {
 .landing-footer a, .landing-footer i {
 	color: var(--accent-color);
 }
-
 
 
 /* Stuff */
