@@ -84,6 +84,11 @@
 	color: var(--accent-color);
 }
 
+.landing-footer a:hover {
+	text-decoration: underline;
+	color: white;
+}
+
 
 /* Sections */
 .secret-section {
