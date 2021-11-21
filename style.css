@@ -13,16 +13,16 @@
 }
 
 .landing-title {
-	font-size: 6em;
+	font-size: 5em;
 	font-weight: 900;
+	line-height: 1.1;
 	letter-spacing: 0.15em;
-	line-height: 1.1em;
 }
 
 .landing-subtitle {
-	font-size: 1.5em;
+	font-size: 1.25em;
 	font-weight: 500;
-	line-height: 1.1em;
+	line-height: 1.1;
 	letter-spacing: 0.08em;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .social-icon {
-	height: 2.3em;
+	height: 1.6em;
 	fill: var(--color-primary);
 	filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2));
 	transition: fill 0.1s;
@@ -74,7 +74,8 @@
 	color: #99a;
 	background-color: var(--background-secondary);
 	border-radius: 20px 0px 0px 20px;
-	font-size: 0.75em;
+	font-size: 0.6em;
+	line-height: 1;
 	text-align: right;
 	z-index: 10;
 }
@@ -101,10 +102,6 @@
 /* Mobile */
 @media only screen and (max-width: 900px),
 			screen and (max-aspect-ratio: 11/9){
-	/* Reduce icon size  */
-	.social-icon {
-		height: 1.5em;
-	}
 
 	/* Change grid to rows  */
 	.landing-grid {
@@ -112,14 +109,12 @@
 		grid-template-rows: 40% auto;
 	}
 
-	/* Decrease text size and add drop shadow  */
+	/* Add drop shadow  */
 	.landing-title {
-		font-size: 4em;
 		filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
 	}
 
 	.landing-subtitle {
-		font-size: 1.2em;
 		filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.8));
 	}
 
