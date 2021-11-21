@@ -162,6 +162,7 @@
 				screen and (max-height: 570px){
 
 		.landing-content {
+			padding: 10px;
 			font-size: 0.7em;
 		}
 	}
