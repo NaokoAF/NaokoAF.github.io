@@ -104,9 +104,19 @@
 /* Mobile */
 @media only screen and (max-width: 900px),
 			screen and (max-aspect-ratio: 11/9){
-	/* Reduce icon size  */
+
+	/* Reduce icon size */
+	.socials {
+		padding: 0.2em 0.1em;
+		filter: none;
+	}
+
+	.social {
+		margin: 0.4em;
+	}
+	
 	.social-icon {
-		height: 1.25em;
+		height: 1.5em;
 	}
 
 	/* Change grid to rows  */
