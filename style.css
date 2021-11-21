@@ -105,7 +105,8 @@
 }
 
 
-/* Mobile */
+
+/* Small screens */
 @media only screen and (max-width: 900px),
 			screen and (max-aspect-ratio: 12/9){
 
@@ -150,11 +151,27 @@
 		transform: translateX(calc(-50% - 3vh));
 	}
 
+	/* Hide darker blobs (for performance) */
+	.blob-darker {
+		display: none;
+	}
 
-	/* Center text on low screen height */
-	@media only screen and (max-height: 500px){
-		.landing-grid {
-			grid-template-rows: 0 auto;
+
+	/* Reduce landing text size on really small screens */
+	@media only screen and (max-width: 320px),
+				screen and (max-height: 570px){
+
+		.landing-content {
+			font-size: 0.7em;
+		}
+	}
+
+	/* Hide blobs on phone screens (for performance) */
+	@media only screen and (max-width: 500px),
+				screen and (max-aspect-ratio: 10/16){
+
+		.blob {
+			display: none;
 		}
 	}
 }
