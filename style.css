@@ -1,4 +1,8 @@
 /* Landing page */
+.landing {
+	overflow: hidden;
+}
+
 .landing-grid {
 	width: 100%;
 	height: 100%;
