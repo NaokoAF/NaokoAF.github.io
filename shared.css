@@ -7,14 +7,9 @@ body {
 	overflow-x: hidden;
 }
 
-:root {
-	color-scheme: dark;	/* Makes scrollbar dark */
-}
-
 * {
 	box-sizing: border-box;
 }
-
 
 
 /* Variables  */
@@ -33,6 +28,27 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+}
+
+
+/* Scrollbar */
+:root {
+	color-scheme: dark; /* Makes scrollbar dark */
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background: var(--background-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--accent-color); 
+	border-radius: 10px;
+	border: 3px solid var(--background-tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: white;
 }
 
 
