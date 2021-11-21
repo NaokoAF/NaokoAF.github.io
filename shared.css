@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: var(--background-primary);
+	background-color: var(--color-background-primary);
 	color: var(--color-text-primary);
 	font-family: 'Raleway', sans-serif;
 	font-weight: 500;
@@ -19,9 +19,9 @@ body {
 	--color-primary: #ff84bd;
 	--color-hover: #ffffff;
 	--color-text-primary: #ffffff;
-	--background-primary: #403349;
-	--background-secondary: #352b3d;
-	--background-tertiary: #2b2231;
+	--color-background-primary: #403349;
+	--color-background-secondary: #352b3d;
+	--color-background-tertiary: #2b2231;
 }
 
 /* Generic  */
@@ -54,13 +54,13 @@ h1, h2, h3, h4, h5, h6, p {
 
 ::-webkit-scrollbar {
 	width: 12px;
-	background: var(--background-tertiary);
+	background: var(--color-background-tertiary);
 }
 
 ::-webkit-scrollbar-thumb {
 	background: var(--color-primary); 
 	border-radius: 10px;
-	border: 3px solid var(--background-tertiary);
+	border: 3px solid var(--color-background-tertiary);
 }
 
 ::-webkit-scrollbar-thumb:hover {

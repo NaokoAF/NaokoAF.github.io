@@ -32,7 +32,7 @@
 	align-items: center;
 	justify-content: center;
 
-	background-color: var(--background-secondary);
+	background-color: var(--color-background-secondary);
 	margin-top: 1em;
 	border-radius: 8px;
 	padding: 0.3em 0.2em;
@@ -73,7 +73,7 @@
 	padding: 10px;
 	margin-bottom: 10px;
 	color: #99a;
-	background-color: var(--background-secondary);
+	background-color: var(--color-background-secondary);
 	border-radius: 20px 0px 0px 20px;
 	font-size: 12px;
 	line-height: 1;
@@ -95,7 +95,7 @@
 /* Sections */
 .secret-section {
 	height: 100px;
-	background-color: var(--background-secondary);
+	background-color: var(--color-background-secondary);
 	font-size: 0.8em;
 	/*filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));*/
 }
