@@ -103,7 +103,7 @@
 
 /* Mobile */
 @media only screen and (max-width: 900px),
-			screen and (max-aspect-ratio: 11/9){
+			screen and (max-aspect-ratio: 12/9){
 
 	/* Reduce icon size */
 	.socials {
