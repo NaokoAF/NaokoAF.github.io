@@ -91,14 +91,6 @@ h1, h2, h3, h4, h5, h6, p {
 @media only screen and (max-width: 900px),
 			screen and (max-aspect-ratio: 11/9){
 	
-	.desktop {
-		display: none;
-	}
-
-	.mobile {
-		display: block;
-	}
-
 	body {
 		font-size: 15;
 	}
