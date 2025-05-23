@@ -126,7 +126,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 	/* Increase button size so its easier to tap */
 	.social svg {
-		height: 2.5em;
+		height: 2em;
 	}
 
 	/* Shift blobs so text is readable */
