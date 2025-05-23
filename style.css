@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6, p {
 	justify-content: center;
 
 	background-color: var(--surface-primary);
-	margin-top: 1em;
+	margin: 20px 0px;
 	border-radius: 8px;
 	padding: 0.2em;
 }
@@ -119,6 +119,10 @@ h1, h2, h3, h4, h5, h6, p {
 
 .social svg:hover {
 	fill: var(--accent-color);
+}
+
+.visit-counter-container {
+	height: 150px;
 }
 
 
