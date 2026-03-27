@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "./Icon.astro";
+
+interface Props extends HTMLAttributes<"a"> {}
+
+const { class: className, ...props } = Astro.props;
+---
+<a class="block-link" class:list={[className]} {...props}>
+	<slot />
+</a>
+
+<style>
+	.block-link {
+		color: var(--color-text);
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--value-border-radius-small);
+	}
+
+	.block-link:hover,
+	.block-link:focus-visible {
+		color: var(--color-text-on-accent);
+		background-color: var(--color-accent);
+		text-decoration: none;
+		outline: none;
+	}
+</style>

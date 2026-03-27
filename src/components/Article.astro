@@ -1,0 +1,163 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Image } from "astro:assets";
+
+/**
+ * Estimates the time it takes to read a post in minutes based on:
+ * - A reading speed of 200 words per minute
+ * - 10 seconds per image
+ * - 20 seconds per code block
+ *
+ * @param body The post contents to estimate the reading time for
+ */
+function minutesToRead(body: string): number {
+	const words = body
+		.replace(/.*\[(.*?)\].*/gm, "$1")
+		.replace(/```.*?```/gms, "")
+		.split(/\s+/).length;
+
+	const images = body.match(/!\[/g)?.length || 0;
+	const codeblocks = body.match(/```/g)?.length || 0;
+	return (
+		Math.ceil(words / 200) +
+		Math.ceil(images / 6) +
+		Math.ceil(codeblocks / 3)
+	);
+}
+
+interface Props extends HTMLAttributes<"div"> {
+	title: string,
+	description?: string,
+	image: any,
+	writtenAt: Date,
+	editedAt?: Date,
+	unlisted?: boolean,
+	body?: string,
+}
+
+const { title, description, image, writtenAt, editedAt, unlisted, body, ...props } = Astro.props;
+
+const info =	[
+	writtenAt.toLocaleDateString(),
+	editedAt && `edited ${editedAt.toLocaleDateString()}`,
+	`${minutesToRead(body ?? "")} minute read`,
+].filter(x => x).join(" · ")
+---
+<div class="article" data-pagefind-body={unlisted ? undefined : true} {...props}>
+	<div class="article__header" id="_top">
+		<h1 class="article__title">{title}</h1>
+		<div class="article__header-subtitle">
+			<h3 class="article__subtitle">{description}</h3>
+			<p class="article__info">{info}</p>
+		</div>
+		<Image
+			class="article__image"
+			src={image}
+			alt={title}
+			loading="eager"
+		/>
+	</div>
+	<div class="article__content">
+		<slot />
+	</div>
+</div>
+
+<style>
+	.article__header {
+		scroll-margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		background-color: var(--color-background1);
+		border: 1px solid var(--color-surface1);
+        border-radius: var(--value-border-radius);
+		overflow: hidden;
+	}
+
+    .article__header-subtitle {
+        display: flex;
+        flex-direction: column;
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+
+	.article__image {
+		width: 100%;
+		height: auto;
+	}
+
+	.article__title {
+		margin: 0;
+		background: var(--color-accent);
+        color: var(--color-text-on-accent);
+        padding: 0.4rem 1rem;
+	}
+
+    .article__subtitle,
+    .article__info {
+        margin: 0;
+    }
+</style>
+
+<style is:global>
+    .article__content {
+        line-height: 1.6;
+    }
+
+	.article__content p:has(img),
+	.article__content .youtube{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.article__content p img {
+		max-width: 100%;
+		height: 100%;
+		border-radius: var(--value-border-radius-small);
+	}
+
+	.article__content code:not(.expressive-code code) {
+		background-color: var(--color-background1);
+		padding: 0.125rem 0.3rem;
+		font-size: 0.925rem;
+		border-radius: var(--value-border-radius-small);
+	}
+
+	.article__content blockquote {
+		background-color: var(--color-background1);
+		border-left: 2px solid var(--color-accent);
+		padding: 0.75rem 1rem;
+		margin-left: 0;
+		width: 100%;
+	}
+
+	.article__content blockquote p {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.article__content table {
+		margin-top: 1rem;
+		text-align: left;
+		border-spacing: 0;
+		border-collapse: collapse;
+	}
+
+	.article__content table th {
+		padding: 0.5rem 1.5rem 0.5rem 0;
+		border-bottom: 1px solid var(--color-surface1);
+	}
+
+	.article__content table tbody {
+		margin-top: 1rem;
+	}
+
+	.article__content table tbody tr {
+		border-bottom: 1px solid var(--color-surface1);
+	}
+
+	.article__content table tbody tr td {
+		padding: 0.5rem 1.5rem 0.5rem 0;
+	}
+</style>

@@ -1,0 +1,410 @@
+---
+import Icon from "./Icon.astro";
+
+const path = Astro.url.pathname;
+---
+<nav class="nav" id="nav">
+	<a class="nav__button nav__title" href="/">/nao</a>
+	<ul class="nav__buttons">
+		<li>
+			<a class="nav__button" href="/blog" class:list={{active: path.startsWith('/blog')}}>/blog</a>
+		</li>
+		<li>
+			<a class="nav__button" href="/projects" class:list={{active: path.startsWith('/projects')}}>/projects</a>
+		</li>
+		<li>
+			<div class="nav__search">
+				<Icon class="nav__icon" id="lucide/search"/>
+				<input id="search" type="text" placeholder="search"/>
+			</div>
+			<div id="search-results"></div>
+		</li>
+		<li>
+			<ul class="nav__theme-buttons">
+				<li>
+					<button class="nav__button" id="toggle-background">
+						<Icon class="nav__icon" id="lucide/wallpaper"/>
+					</button>
+				</li>
+				<li>
+					<button class="nav__button" id="toggle-theme">
+						<Icon class="nav__icon" id="lucide/sun"/>
+					</button>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<button class="nav-toggle" aria-label="Mobile menu trigger">
+		<Icon class="nav-toggle__closed" id="lucide/menu"/>
+		<Icon class="nav-toggle__open" id="lucide/x"/>
+	</button>
+</nav>
+
+<style>
+	.nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-family: var(--font-mono);
+		z-index: 50;
+		color: var(--color-text);
+	}
+
+	.nav__title {
+		font-weight: 800;
+		font-size: 1.25em;
+	}
+
+	.nav__buttons,
+	.nav__theme-buttons {
+		display: flex;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	.nav li {
+		display: flex;
+		position: relative;
+	}
+
+	.nav__button,
+	.nav__search {
+		display: flex;
+		align-items: center;
+		color: var(--color-text);
+		background-color: var(--color-background2);
+		text-decoration: none;
+		padding: .25rem .5rem;
+		border-radius: var(--value-border-radius-small);
+	}
+
+	.nav__button {
+		cursor: pointer;
+	}
+
+	.nav__button:hover, .nav__button:focus-visible {
+		color: var(--color-accent);
+		outline: none;
+	}
+
+	.nav__icon {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.nav__search {
+		width: 150px;
+		gap: 0.25rem;
+	}
+
+	#search {
+		border: none;
+		outline: none;
+		width: 100%;
+		background: none;
+		color: var(--color-text);
+	}
+
+	#search::placeholder {
+		color: var(--color-subtext0);
+	}
+
+	#search-results {
+		position: absolute;
+		top: calc(100% + .5rem);
+		right: 0;
+		background-color: var(--color-background2);
+		border: 1px solid var(--color-surface1);
+		display: none;
+		width: 200%;
+		z-index: 10;
+		padding: .5rem;
+		border-radius: var(--value-border-radius-small);
+		overflow: hidden;
+	}
+
+	#search-results.active:has(*) {
+		display: block;
+	}
+
+	.nav-toggle {
+		display: none;
+		width: 40px;
+		height: 40px;
+		color: var(--color-text);
+		background-color: var(--color-background2);
+		border-radius: var(--value-border-radius-small);
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		z-index: 2;
+	}
+
+	.nav-toggle__open {
+		display: none;
+	}
+
+	.nav--active .nav-toggle__open {
+		display: flex;
+	}
+
+	.nav--active .nav-toggle__closed {
+		display: none;
+	}
+
+	@media screen and (max-width: 640px) {
+		.nav {
+			padding: 1rem;
+			transition: background-color .2s ease, padding-bottom .2s ease;
+		}
+
+		.nav--active {
+			padding-bottom: 15rem;
+			background-color: var(--color-background1);
+			border-radius: 0 0 var(--value-border-radius) var(--value-border-radius);
+		}
+
+		.nav-toggle {
+			display: flex;
+		}
+
+		.nav--active .nav-toggle,
+		.nav--active .nav__title {
+			background-color: var(--color-surface0);
+		}
+
+		.nav__buttons {
+			flex-direction: column;
+			position: absolute;
+			width: 100%;
+			top: 0;
+			right: 0;
+			padding: 1rem;
+			z-index: 1;
+			opacity: 0;
+			pointer-events: none;
+			user-select: none;
+			transition: opacity .2s ease, top .2s ease;
+		}
+
+		.nav .nav__button.active {
+			background-color: var(--color-accent);
+			color: var(--color-text-on-accent);
+			outline: none;
+		}
+
+		.nav--active .nav__buttons {
+			top: 4rem;
+			opacity: 1;
+			pointer-events: all;
+		}
+
+		.nav li {
+			width: 100%;
+		}
+
+		.nav__button:not(.nav__title),
+		.nav__search {
+			width: 100%;
+			padding: .75rem 1rem;
+			background-color: var(--color-surface0);
+		}
+
+		.nav__search {
+			gap: 0.5rem;
+		}
+
+		#search-results {
+			width: 100%;
+			top: calc(100% + 0.5rem);
+			font-size: 0.875em;
+		}
+	}
+</style>
+
+<style is:global>
+	#search-results a {
+		display: block;
+		text-decoration: none;
+		color: var(--color-text) !important;
+		padding: .5rem;
+	}
+
+	#search-results a:hover,
+	#search-results a:focus-visible {
+		background-color: var(--color-surface2);
+		border-radius: var(--value-border-radius-small);
+		outline: none;
+	}
+
+	#search-results a h3 {
+		margin-top: 0;
+		margin-bottom: .5rem;
+	}
+
+	#search-results a p {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	#search-results mark {
+		background: none;
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+</style>
+
+<script>
+	// theme toggling
+	const toggleThemeButton = document.querySelector<HTMLButtonElement>(".nav__button#toggle-theme");
+	if (toggleThemeButton !== null) {
+		toggleThemeButton.addEventListener("click", () => {
+			const defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+			const currentTheme = document.documentElement.dataset.theme ?? defaultTheme;
+			const newTheme = currentTheme == "dark" ? "light" : "dark";
+
+			// only override if different from browser preferences
+			if (newTheme !== defaultTheme) {
+				document.documentElement.dataset.theme = newTheme;
+				localStorage.setItem("theme", newTheme);
+			} else {
+				delete document.documentElement.dataset.theme;
+				localStorage.removeItem("theme");
+			}
+		});
+	}
+
+	// background toggling
+	const toggleBackgroundButton = document.querySelector<HTMLButtonElement>(".nav__button#toggle-background");
+	if (toggleBackgroundButton !== null) {
+		toggleBackgroundButton.addEventListener("click", () => {
+			if (localStorage.getItem("background") === "hidden") {
+				delete document.documentElement.dataset.background;
+				localStorage.removeItem("background")
+			} else {
+				document.documentElement.dataset.background = "hidden";
+				localStorage.setItem("background", "hidden")
+			}
+		});
+	}
+
+	// mobile nav button
+	const nav = document.querySelector<HTMLElement>("#nav");
+	const navToggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+	if (nav !== null && navToggle !== null) {
+		navToggle.addEventListener("click", () => {
+			nav.classList.toggle("nav--active");
+		});
+	}
+</script>
+
+<script is:inline>
+	const searchElement = document.querySelector('#search');
+	const results = document.querySelector('#search-results');
+
+	let focusIndex = -1;
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			searchElement.blur();
+			results.classList.remove('active');
+			focusIndex = -1;
+		}
+
+		if (e.key === 'ArrowDown') {
+			e.preventDefault();
+
+			focusIndex++;
+			const results = document.querySelectorAll('#search-results a');
+
+			if (focusIndex >= results.length) {
+				focusIndex = 0;
+			}
+
+			results[focusIndex]?.focus();
+		}
+
+		if (e.key === 'ArrowUp') {
+			e.preventDefault();
+
+			focusIndex--;
+			const results = document.querySelectorAll('#search-results a');
+
+			if (focusIndex < 0) {
+				focusIndex = results.length - 1;
+			}
+
+			results[focusIndex]?.focus();
+		}
+	});
+
+	let pagefindInitialized = false;
+
+	searchElement?.addEventListener('focus', async () => {
+		results.classList.add('active');
+
+		// initialize pagefind on first focus
+		if (!pagefindInitialized) {
+			try {
+				window.pagefind = await import("/pagefind/pagefind.js");
+				await window.pagefind.init();
+				pagefindInitialized = true;
+			} catch (error) {
+				console.error('Failed to initialize Pagefind:', error);
+			}
+		}
+	});
+
+	searchElement?.addEventListener('blur', () => {
+		setTimeout(() => {
+			if (!document.activeElement?.closest('#search-results')) {
+				results.classList.remove('active');
+				focusIndex = -1;
+			}
+		}, 1);
+	});
+
+	results?.addEventListener('focusout', (e) => {
+		if (!e.relatedTarget?.closest('#search-results')) {
+			results.classList.remove('active');
+			focusIndex = -1;
+		}
+	});
+
+	searchElement?.addEventListener('input', async (e) => {
+		// only search if Pagefind is ready
+		if (!pagefindInitialized) {
+			return;
+		}
+
+		results.innerHTML = '';
+		let searchResultHtml = '';
+
+		const search = await window.pagefind.search(e.target.value);
+
+		let i = 0;
+		for (const result of search.results) {
+			i++;
+
+			const data = await result.data();
+
+			searchResultHtml += `
+				<a href="${data.url}">
+					<h3>${data.meta.title}</h3>
+					<p>${data.excerpt}</p>
+				</a>
+			`;
+		}
+
+		if (search.results.length === 0 && e.target.value.length > 0) {
+			results.innerHTML = '<p style="margin-top: 0;">No results found</p>';
+		} else {
+			results.innerHTML = searchResultHtml;
+		}
+
+		results.classList.add('active');
+	});
+</script>

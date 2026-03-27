@@ -1,0 +1,54 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Tag {
+	tag: string,
+	text?: string | null,
+	href?: string | URL | null,
+}
+
+interface Props extends HTMLAttributes<"div"> {
+	tags: Tag[],
+}
+
+const { tags, ...props } = Astro.props;
+---
+<div class="tag-list" {...props}>
+	{tags.map((tag) => (
+		<a class="tag" href={tag.href} data-tag={tag.tag}>
+			{tag.text ?? tag.tag}
+		</a>
+	))}
+</div>
+
+<style>
+	.tag-list {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		gap: 1rem;
+	}
+
+	.tag {
+		padding: 0.25rem 0.5rem;
+		background: var(--color-surface0);
+		border-radius: var(--value-border-radius-small);
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.tag:not(.tag--active):hover,
+	.tag:not(.tag--active):focus-visible {
+		background: var(--color-surface1);
+		color: var(--color-text);
+	}
+
+	.tag--active {
+		background: var(--color-accent);
+		color: var(--color-text-on-accent);
+	}
+</style>

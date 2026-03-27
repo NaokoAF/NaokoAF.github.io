@@ -1,0 +1,75 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+interface Props extends HTMLAttributes<"div"> {
+	header: string,
+	link: string,
+	title?: string,
+	thumbnail?: string,
+}
+
+const { header, link, title, thumbnail, ...props } = Astro.props;
+
+---
+<div class="youtube">
+	<div class="youtube__content">
+		<div class="youtube__header">
+			<a href={link} target="_blank" rel="noopener noreferrer">
+				<h3>{header}</h3>
+			</a>
+		</div>
+		<YouTube
+			id={link}
+			title={title}
+			poster={thumbnail}
+			posterQuality="high"
+		/>
+	</div>
+</div>
+
+<style>
+	/*.youtube {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}*/
+
+	.youtube__content {
+		width: 100%;
+		max-width: 600px;
+		border-radius: var(--value-border-radius);
+		border: 1px solid var(--color-surface1);
+		overflow: hidden;
+	}
+
+	.youtube__header {
+		background-color: var(--color-background1);
+		padding: 0.5rem 0.75rem;
+	}
+
+	.youtube__header h3 {
+		margin: 0;
+	}
+
+	.youtube__header a:hover h3 {
+		color: var(--color-accent);
+	}
+
+	.youtube lite-youtube {
+		max-width: none;
+	}
+
+	/* make title more readable */
+	.youtube lite-youtube::before {
+		padding: 0.5rem 0.75rem;
+		height: 8rem;
+		text-shadow: none;
+		background-image: linear-gradient(
+			180deg,
+			rgb(32 24 38 / .9) 0%,
+			rgb(32 24 38 / .9) 10%,
+			rgb(32 24 38 / 0) 90%
+		);
+	}
+</style>

@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import { openGraph } from "../config.ts";
+import Card from "../components/Card.astro";
+import PostList from "../components/PostList.astro";
+import TagList from "../components/TagList.astro";
+import Layout from "../layouts/Layout.astro";
+
+const posts = await getCollection("posts", (post) => post.data.unlisted !== true);
+
+const tags = posts.flatMap(post => post.data.tags);
+const tagPostCounts = posts.reduce((state, post) => {
+	post.data.tags.forEach(tag => {
+		state[tag] = (state[tag] ?? 0) + 1;
+	});
+	return state;
+}, {} as Record<string, number>);
+---
+<Layout
+	pageTitle={openGraph.blog.pageTitle}
+	title={openGraph.blog.title}
+	description={openGraph.blog.description}
+	image={openGraph.blog.image}
+	pagefindIgnore
+>
+	<div class="layout-grid__left" slot="left">
+		<Card title="filter by tag" icon="lucide/tags">
+			<TagList
+				tags={tags.map((tag) => ({
+					tag: tag,
+					text: `${tag} (${tagPostCounts[tag]})`,
+					href: "/blog",
+				}))}
+			/>
+		</Card>
+	</div>
+	<div class="layout-grid__right" slot="right">
+		<Card title={`posts (${posts.length})`} icon="lucide/rss" id="posts-card">
+			<PostList
+				posts={
+					posts.map((post) => ({
+						url: `/blog/${post.id}`,
+						tags: post.data.tags,
+						title: post.data.title,
+						description: post.data.description,
+						date: post.data.writtenAt,
+						image: post.data.image,
+					}))
+				}
+			/>
+		</Card>
+	</div>
+</Layout>
+
+<script>
+	const tags = document.querySelectorAll<HTMLElement>('.tag-list .tag');
+	const posts = document.querySelectorAll<HTMLElement>('#posts-card .post');
+	const postsCardTitle = document.querySelector<HTMLElement>('#posts-card .card__title');
+	const url = new URL(window.location.href);
+	const initialTags = url.searchParams.get('tags')?.split(',').filter((tag) => tag.length > 0) || [];
+	const selectedTags = new Set(initialTags);
+
+	function updatePostsVisibility() {
+		let count = 0;
+		posts.forEach((post) => {
+			const postTags = post.dataset.tags!.split(',');
+			// if there are selected tags and the post does not have all of them, hide the post
+			if (selectedTags.size > 0 && ![...selectedTags].every((tag) => postTags.includes(tag))) {
+				post.style.display = 'none';
+			} else {
+				post.style.display = '';
+				count++;
+			}
+		});
+
+		if(postsCardTitle) {
+			postsCardTitle.textContent = `posts (${count})`;
+		}
+	}
+
+	function updateURL() {
+		// create a "clean" URL for the current page before adding the new query parameters
+		const newUrl = new URL(window.location.pathname, window.location.origin);
+		if (selectedTags.size > 0) {
+			newUrl.searchParams.set('tags', [...selectedTags].join(','));
+		}
+		history.pushState({ tags: [...selectedTags] }, '', newUrl);
+	}
+
+	tags.forEach((tag) => {
+		const tagValue = tag.dataset.tag!;
+		if (selectedTags.has(tagValue)) {
+			tag.classList.add('tag--active');
+		}
+
+		tag.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			tag.classList.toggle('tag--active');
+
+			if (selectedTags.has(tagValue)) {
+				selectedTags.delete(tagValue);
+			} else {
+				selectedTags.add(tagValue);
+			}
+
+			updatePostsVisibility();
+			updateURL();
+		});
+	});
+
+	updatePostsVisibility();
+</script>

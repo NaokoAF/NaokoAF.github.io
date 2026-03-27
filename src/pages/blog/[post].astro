@@ -1,0 +1,97 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import { openGraph, giscus } from "../../config.ts";
+import Card from "../../components/Card.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import TagList from "../../components/TagList.astro";
+import Layout from "../../layouts/Layout.astro";
+import Article from "../../components/Article.astro";
+import Giscus from "../../components/Giscus.astro";
+import BlockLink from "../../components/BlockLink.astro";
+
+export const getStaticPaths = (async () => {
+	const posts = await getCollection("posts");
+	return posts.map(post => ({
+		params: { post: post.id },
+		props: { post } }
+	));
+}) satisfies GetStaticPaths;
+
+interface Props {
+	post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+<Layout
+	pageTitle={openGraph.blog.postTitlePrefix + post.data.title}
+	title={post.data.title}
+	description={post.data.description}
+	image={post.data.image}
+	article={{
+		writtenAt: post.data.writtenAt,
+		editedAt: post.data.editedAt,
+	}}
+	pagefindIgnore={post.data.unlisted}
+>
+	<div class="layout-grid__left" slot="left">
+		<Card title="tags" icon="lucide/tags" href="/blog">
+			<TagList
+				tags={post.data.tags.map((tag) => ({
+					tag: tag,
+					href: `/blog?tags=${tag}`
+				}))}
+			/>
+			{post.data.tags.length == 0 && <p>no tags</p>}
+		</Card>
+		<Card class="contents-card" title="contents" icon="lucide/table-of-contents">
+			<TableOfContents title={post.data.title} headings={headings}/>
+		</Card>
+	</div>
+	<article class="layout-grid__right" slot="right">
+		<Card>
+			<Article
+				title={post.data.title}
+				description={post.data.description}
+				writtenAt={post.data.writtenAt}
+				editedAt={post.data.editedAt}
+				image={post.data.image}
+                unlisted={post.data.unlisted}
+				body={post.body}
+			>
+				<Content />
+			</Article>
+		</Card>
+		<Card>
+			<BlockLink href="/blog">← back to /blog</BlockLink>
+		</Card>
+		{giscus.enabled && (
+			<Card title="comments" icon="lucide/messages-square">
+				<Giscus
+					class="comments"
+					term={post.id}
+				/>
+			</Card>
+		)}
+	</article>
+</Layout>
+
+<style>
+	.contents-card {
+		position: sticky;
+		top: 1.5rem;
+	}
+
+	.comments * {
+		border-color: var(--color-surface1) !important;
+	}
+
+	@media screen and (max-width: 640px) {
+		article {
+			gap: 1rem;
+		}
+	}
+</style>

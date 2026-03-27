@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { giscus } from "../config.ts";
+
+interface Props extends HTMLAttributes<"div"> {
+	term?: string | null
+}
+
+const { term, ...props } = Astro.props;
+---
+<div {...props}>
+	{giscus.enabled ? (
+		<script
+			is:inline
+			src="https://giscus.app/client.js"
+			data-repo={giscus.repository}
+			data-repo-id={giscus.repositoryId}
+			data-category={giscus.category}
+			data-category-id={giscus.categoryId}
+			data-mapping={giscus.mapping}
+			data-strict={giscus.strict ? "1" : "0"}
+			data-reactions-enabled={giscus.reactionsEnabled ? "1" : "0"}
+			data-emit-metadata={giscus.emitMetadata ? "1" : "0"}
+			data-input-position={giscus.inputPosition}
+			data-theme={giscus.theme}
+			data-lang={giscus.lang}
+			data-term={term}
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async
+		/>
+	) : <p>you shouldn't be seeing this...</p>}
+</div>

@@ -1,0 +1,100 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import { openGraph } from "../../config.ts";
+import Card from "../../components/Card.astro";
+import Icon from "../../components/Icon.astro";
+import Article from "../../components/Article.astro";
+import Layout from "../../layouts/Layout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import OverviewList from "../../components/OverviewList.astro";
+import BlockLink from "../../components/BlockLink.astro";
+
+export const getStaticPaths = (async () => {
+	const projects = await getCollection("projects");
+	return projects.map(project => ({
+		params: { project: project.id },
+		props: { project },
+	}));
+}) satisfies GetStaticPaths;
+
+interface Props {
+	project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content, headings } = await render(project);
+---
+<Layout
+	pageTitle={openGraph.projects.postTitlePrefix + project.data.title}
+	title={project.data.title}
+	description={project.data.description}
+	image={project.data.image}
+	article={{
+		writtenAt: project.data.writtenAt,
+		editedAt: project.data.editedAt,
+	}}
+    pagefindIgnore={project.data.unlisted ?? false}
+>
+	<div class="layout-grid__left" slot="left">
+		<Card title="info" icon="lucide/info">
+			<OverviewList>
+				<li class="project-info-item">
+					<Icon class="text--accent" id="lucide/calendar" />
+					<span>released: {project.data.releasedAt.toLocaleDateString()}</span>
+				</li>
+				{
+					project.data.links.map((link) => {
+						const Tag = link.link ? "a" : "div";
+						return <li>
+							<Tag href={link.link} class="project-info-item">
+								<Icon class="text--accent" id={link.icon} />
+								<span>{link.text}</span>
+							</Tag>
+						</li>
+					})
+				}
+			</OverviewList>
+		</Card>
+		<Card class="contents-card" title="contents" icon="lucide/table-of-contents">
+			<TableOfContents title={project.data.title} headings={headings} />
+		</Card>
+	</div>
+	<article class="layout-grid__right" slot="right">
+		<Card>
+			<Article
+				title={project.data.title}
+				description={project.data.description}
+				writtenAt={project.data.writtenAt}
+				editedAt={project.data.editedAt}
+				image={project.data.image}
+				unlisted={project.data.unlisted}
+				body={project.body}
+			>
+				<Content />
+			</Article>
+		</Card>
+		<Card>
+			<BlockLink href="/projects">← back to /projects</BlockLink>
+		</Card>
+	</article>
+</Layout>
+
+<style>
+	.project-info-item {
+		display: flex;
+		align-items: center;
+		color: var(--color-text);
+		gap: 1rem;
+	}
+
+	a.project-info-item:hover {
+		color: var(--color-accent);
+	}
+
+	.contents-card {
+		position: sticky;
+		top: 1.5rem;
+	}
+</style>

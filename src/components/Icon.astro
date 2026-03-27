@@ -1,0 +1,51 @@
+---
+import { getIconData, iconToSVG, replaceIDs } from "@iconify/utils";
+import { icons as lucideIconsJSON } from "@iconify-json/lucide";
+import { icons as simpleIconsJSON } from "@iconify-json/simple-icons";
+import { AstroError } from "astro/errors";
+import type { HTMLAttributes } from "astro/types";
+import type {ExtendedIconifyIcon} from "@iconify/types";
+
+interface SVGAttributes extends HTMLAttributes<"svg"> {
+	[key: string]: any,
+}
+
+interface Props extends HTMLAttributes<"svg"> {
+	id: string,
+	width?: number,
+	height?: number,
+}
+
+const { id, width, height, ...props } = Astro.props;
+const attributes = props as SVGAttributes;
+
+const match = id.match(/^([\w.-]*)\/([\w.-]*)$/);
+const provider = match?.[1];
+const name = match?.[2];
+
+if (!provider || !name) throw new AstroError(`Invalid icon "${id}"`);
+
+let iconData: ExtendedIconifyIcon | null;
+switch (provider) {
+	case "lucide":
+		iconData = getIconData(lucideIconsJSON, name);
+		break;
+	case "simple-icons":
+		iconData = getIconData(simpleIconsJSON, name);
+		break;
+}
+
+if (!iconData) throw new AstroError(`Icon ${id} is missing`);
+
+const body = replaceIDs(iconToSVG(iconData).body);
+
+let attributesHtml = body.indexOf("xlink:") === -1 ? "" : ' xmlns:xlink="http://www.w3.org/1999/xlink"';
+attributesHtml += ` viewbox="0 0 24 24" width="${width ?? 24}" height="${height ?? 24}"`;
+for (const key in attributes) {
+	attributesHtml += ` ${key}="${attributes[key]}"`;
+}
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg"${attributesHtml}>${body}</svg>`;
+---
+
+<Fragment set:html={svg} />

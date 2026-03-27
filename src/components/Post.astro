@@ -1,0 +1,97 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+	title: string,
+	description: string,
+	image: any,
+	date: Date,
+	url?: string | URL | null,
+	href?: string | URL | null,
+	tags?: string[] | null
+}
+const { title, description, image, date, url, tags } = Astro.props;
+---
+
+<a href={url} class="post" data-tags={tags?.join(",")}>
+	<Image
+		class="post__image"
+		height={200}
+		src={image}
+		alt={title}
+	/>
+	<div class="post__info">
+		<div class="post__header">
+			<h3>{title}</h3>
+			<span class="post__date">{date.toLocaleDateString()}</span>
+		</div>
+		<span>{description}</span>
+	</div>
+</a>
+
+<style>
+	.post {
+		display: flex;
+		flex-direction: row;
+		gap: 0.75rem;
+		padding: 0.75rem;
+		background-color: var(--color-surface0);
+		border: 1px solid var(--color-surface1);
+		border-radius: var(--value-border-radius);
+		overflow: hidden;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: background-color 0.15s ease, border 0.15s ease;
+	}
+
+	.post:hover,
+	.post:focus-visible {
+		background-color: var(--color-surface1);
+		border: 1px solid var(--color-accent);
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.post:focus-visible {
+		outline: none;
+	}
+
+	.post__image {
+		height: 3rem;
+		width: 5.3rem;
+		border-radius: var(--value-border-radius-small);
+	}
+
+	.post__info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		flex-grow: 1;
+	}
+
+	.post__header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.post__header h3 {
+		margin: 0;
+	}
+
+	.post__date {
+		color: var(--color-subtext0);
+		font-family: var(--font-mono);
+	}
+	
+	@media screen and (max-width: 640px) {
+		.post__header {
+			flex-direction: column;
+		}
+
+		.post__image {
+			height: 4.4rem;
+			width: 7.8rem;
+		}
+	}
+</style>

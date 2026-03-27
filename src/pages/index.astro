@@ -1,0 +1,237 @@
+---
+import {getCollection, render} from "astro:content";
+import {Image} from "astro:assets";
+import {openGraph, profile, socials} from "../config.ts";
+import Banner from "../assets/banner.png";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import PostList from "../components/PostList.astro";
+import Icon from "../components/Icon.astro";
+import OverviewList from "../components/OverviewList.astro";
+
+const home = await getCollection("home");
+const posts = await getCollection("posts", post => !post.data.unlisted);
+const projects = await getCollection("projects", post => !post.data.unlisted);
+
+const homeEntries = await Promise.all(
+	home.map(async (entry) => ({
+		entry: entry,
+		render: await render(entry),
+	}))
+);
+---
+<Layout
+	pageTitle={openGraph.home.pageTitle}
+	title={openGraph.home.title}
+	description={openGraph.home.description}
+	image={openGraph.home.image}
+	pagefindIgnore
+>
+	<div class="layout-grid__left" slot="left">
+		<div class="layout-grid__left profile-and-socials">
+			<Card>
+				<div class="profile-banner" slot="pre">
+					<Image
+						class="profile-banner__image"
+						src={Banner}
+						alt="profile banner"
+						loading="eager"
+					/>
+				</div>
+				<OverviewList>{
+					profile.map((entry) => (
+						<li class="profile-info-entry" data-id={entry.id}>
+							<Icon class="text--accent" id={entry.icon}/>
+							<span class="profile-info-entry__text">{entry.text}</span>
+						</li>
+					))
+				}</OverviewList>
+			</Card>
+			<Card>
+				<OverviewList>{
+					socials.map(social => (
+						<li class="social-link">
+							<a href={social.link}>
+								<Icon class="text--accent" id={social.icon}/>
+								<span class="social-link__text">{social.text}</span>
+							</a>
+							{social.copy && (
+								<button class="copy-button" data-copy={social.copy}>
+									<Icon class="copy-button__icon" id="lucide/copy"/>
+									<Icon class="copy-button__icon-copied" id="lucide/copy-check"/>
+								</button>
+							)}
+						</li>
+					))
+				}</OverviewList>
+			</Card>
+		</div>
+	</div>
+	<div class="layout-grid__right" slot="right">
+		{
+			homeEntries
+				.sort((a, b) => a.entry.data.order - b.entry.data.order)
+				.map((entry) => (
+					<Card
+						title={entry.entry.data.title}
+						icon={entry.entry.data.icon}
+						class="home-entry"
+					>
+						<div class="home-entry__content">
+							<entry.render.Content/>
+						</div>
+					</Card>
+				))
+		}
+		<Card title="recent posts" icon="lucide/rss" href="/blog">
+			<PostList
+				limit={3}
+				posts={
+					posts.map((post) => ({
+						url: `/blog/${post.id}`,
+						tags: post.data.tags,
+						title: post.data.title,
+						description: post.data.description,
+						date: post.data.writtenAt,
+						image: post.data.image,
+					}))
+				}
+			/>
+		</Card>
+		<Card title="recent projects" icon="lucide/folder-git" href="/projects">
+			<PostList
+				limit={3}
+				posts={
+					projects.map((post) => ({
+						url: `/projects/${post.id}`,
+						title: post.data.title,
+						description: post.data.description,
+						date: post.data.releasedAt,
+						image: post.data.image,
+					}))
+				}
+			/>
+		</Card>
+		<Card title="your lucky numbers" icon="lucide/hash">
+			<img
+				height={100}
+				src={"https://count.getloli.com/@naokoaf.github.io?theme=rule34&padding=1&darkmode=0" + (
+					import.meta.env.DEV ? "&num=12345" : ""
+				)}
+				alt="visit counter"
+				loading="eager"
+			/>
+		</Card>
+	</div>
+</Layout>
+
+<style>
+	.profile-banner {
+		height: 100px;
+	}
+
+	.profile-banner__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.social-link a {
+		color: var(--color-text);
+		display: flex;
+		flex-direction: row;
+		gap: 0.75rem;
+		align-items: center;
+	}
+
+	.social-link a:hover {
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
+	.copy-button {
+		display: none; /* hide by default. show with javascript */
+		color: var(--color-text);
+		cursor: pointer;
+		transition: color .25s ease;
+	}
+
+	.copy-button:hover,
+	.copy-button:focus-visible,
+	.copy-button--copied {
+		color: var(--color-accent);
+	}
+
+	.copy-button--active {
+		display: inherit;
+	}
+
+	.copy-button--copied .copy-button__icon {
+		display: none;
+	}
+
+	.copy-button--copied .copy-button__icon-copied {
+		display: inherit;
+	}
+
+	.copy-button__icon-copied {
+		display: none;
+	}
+
+	.home-entry__content {
+		line-height: 1.6;
+	}
+
+	@media screen and (max-width: 1380px) and (min-width: 800px) {
+		.profile-and-socials {
+			flex-direction: row;
+		}
+	}
+</style>
+
+<script>
+	// age display
+	const ageText = document.querySelector<HTMLElement>('.profile-info-entry[data-id="age"] .profile-info-entry__text');
+
+	function update() {
+		if (ageText) {
+			const NAO_EPOCH = 1071619200000
+			const MILLISECONDS_PER_YEAR = 31556952000;
+			const age = (new Date().getTime() - NAO_EPOCH) / MILLISECONDS_PER_YEAR;
+			ageText.innerText = `${age.toFixed(10)} years old`;
+		}
+
+		requestAnimationFrame(update);
+	}
+
+	update();
+
+	// copy buttons
+	const copyButtons = document.querySelectorAll<HTMLButtonElement>('.copy-button[data-copy]');
+	copyButtons.forEach((element) => {
+		const copy: string | null | undefined = element.dataset.copy;
+		if (!copy) return; // shouldn't happen, but let's be safe
+
+		// activate button so it appears
+		element.classList.add("copy-button--active");
+
+		let timeout: Timer | null = null;
+		element.addEventListener("click", async () => {
+			try {
+				await navigator.clipboard.writeText(copy);
+			} catch {
+				// failed to write to clipboard. show a dialog box as a fallback
+				window.prompt("copy to clipboard:", copy);
+				return;
+			}
+
+			if (timeout !== null) clearTimeout(timeout);
+			else element.classList.add("copy-button--copied");
+
+			timeout = setTimeout(() => {
+				element.classList.remove("copy-button--copied");
+				timeout = null;
+			}, 2000);
+		});
+	});
+</script>

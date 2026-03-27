@@ -1,0 +1,62 @@
+---
+title: hasty controls
+description: control enhancement mod for haste (gyro aiming).
+image: ./hasty-controls.png
+writtenAt: 2026-3-26
+releasedAt: 2025-4-1
+links:
+  - text: steam workshop
+    icon: simple-icons/steam
+    link: https://steamcommunity.com/sharedfiles/filedetails/?id=3456414574
+  - text: github
+    icon: simple-icons/github
+    link: https://github.com/NaokoAF/HastyControls
+---
+import YoutubeCard from "../../components/YoutubeCard.astro";
+
+# what is it
+hasty controls is a mod for [Haste](https://store.steampowered.com/app/1796470/Haste/) by
+[Landfall](https://landfall.se/). it adds gyro aiming (looking around by physically moving the controller),
+rumble support (which has since been built into the game), and *extensive* controller related settings.
+
+<YoutubeCard
+    header="trailer"
+    link="https://www.youtube.com/watch?v=-OfOumEhUOE"
+    title="Haste with Motion Controls - HastyControls Mod"
+/>
+
+# how it came to be
+i had been experimenting with adding gyro controls to other games through external tools (steam input,
+[JSM](https://github.com/Electronicks/JoyShockMapper)). while these worked great for most games, i ran into problems
+with haste. this inspired me to try and make a small "patch" mod to fix those specific issues, which quickly evolved
+into simply adding gyro controls directly into the game.
+
+a lot of research was done into correct gyro implementations, with the main resource being
+[Jibb Smart's GyroWiki](http://gyrowiki.jibbsmart.com/), who also developed the gyro controls seen in
+[Fortnite](https://www.fortnite.com/).
+
+# outcome
+shortly after release, i got in contact with ivan from [FlickStick Videos](https://www.youtube.com/@FlickStickVids),
+who wanted to talk about my development process for a video on his channel.
+
+<YoutubeCard
+    header="fsv's video"
+    link="https://www.youtube.com/watch?v=-LyNZDHinpU"
+    title="This MOD might just CHANGE gaming FOREVER!!!"
+/>
+
+this drove a lot of traffic to both his channel and my mod, garnering (at the time of writing) 12k unique visitors to
+the workshop page.
+
+post-release i moved and released all the gyro processing code into a relatively easy to use library:
+[GyroHelpers](https://github.com/NaokoAF/GyroHelpers), which has been used in
+[MadladV's godot-gyro](https://github.com/MadladV/godot-gyro).
+
+# post-mortem
+i'm mostly happy with this project, and the fact that it got published at all. if i was to do something differently,
+i'd try to slow myself down a bit. agility in development is good, but i was at full throttle at all times, to the
+point it, in my opinion hurt the final product. pushing updates without testing them for long enough, not focusing
+enough on the actual user experience and improving ui, among other things.
+
+ultimately it served as a good learning experience, and a way of getting my name out there within a niche
+community.

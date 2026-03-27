@@ -1,0 +1,174 @@
+---
+import "../styles/reset.css";
+import "../styles/globals.css";
+
+import { generateCss, colors as themeColors } from "../themes";
+import { openGraph } from "../config.ts";
+import Navbar from "../components/Navbar.astro";
+import Background from "../components/Background.astro";
+
+interface Props {
+	pageTitle?: string | null;
+	title: string;
+	description?: string | null;
+	image?: ImageMetadata;
+	article?: {
+		writtenAt: Date;
+		editedAt?: Date;
+	};
+}
+
+const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="preload" href="/fonts/jetbrainsmono/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+		<!--<link rel="preload" href="/fonts/monorale/Monorale-Regular.woff" as="font" type="font/woff" crossorigin="">-->
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{pageTitle ?? title}</title>
+		{description && <meta name="description" content={description} />}
+		<meta name="theme-color" content={themeColors.dark.accent}>
+
+		<link rel="canonical" href={Astro.url} />
+
+		<meta name="og:title" content={title} />
+		{description && <meta name="og:description" content={description} />}
+		<meta name="og:image" content={image?.src || openGraph.defaultImage} />
+		<meta name="og:url" content={Astro.site} />
+		{!article && <meta name="og:type" content="website" />}
+		<meta name="og:locale" content="en" />
+
+		{article && (
+			<meta name="og:type" content="article" />
+			<meta property="article:published_time" content={article.writtenAt.toISOString()} />
+			<meta name="author" content={openGraph.author} />
+		)}
+
+		{article && article.editedAt && (
+			<meta property="article:modified_time" content={article.editedAt.toISOString()} />
+		)}
+
+		<meta name="twitter:card" content="summary_large_image" />
+		{openGraph.twitterHandle && (
+			<meta name="twitter:site" content={openGraph.twitterHandle} />
+			<meta name="twitter:creator" content={openGraph.twitterHandle} />
+		)}
+		<meta name="twitter:title" content={title} />
+		{description && <meta name="twitter:description" content={description} />}
+		<meta name="twitter:image" content={image?.src || openGraph.defaultImage} />
+
+		<link rel="alternate" type="application/rss+xml" title={openGraph.blog.title} href="/blog/rss.xml" />
+	</head>
+	<body>
+		<Background />
+		<main>
+			<Navbar />
+			<slot name="pre" />
+			<div class="layout-grid">
+				<slot name="left" />
+				<slot name="right" />
+			</div>
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style>
+	main {
+		width: 100%;
+		max-width: 1280px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		padding: 2rem 0;
+	}
+
+	.layout-grid {
+		position: relative;
+		align-items: start;
+		align-content: stretch;
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 2fr 5fr;
+		grid-template-rows: auto;
+	}
+
+	@media screen and (max-width: 1380px) {
+		.layout-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media screen and (max-width: 640px) {
+		main {
+			padding-top: 0;
+			gap: 1rem;
+		}
+
+		.layout-grid {
+			margin: 0 1rem;
+			gap: 1rem;
+		}
+	}
+</style>
+
+<Fragment set:html={`<style>${generateCss()}</style>`} />
+
+<style is:global>
+	.layout-grid__left,
+	.layout-grid__right {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		gap: 1.5rem;
+		min-width: 0;
+	}
+
+	@media screen and (max-width: 640px) {
+		.layout-grid__left,
+		.layout-grid__right {
+			gap: 1rem;
+		}
+	}
+
+	html {
+		background-color: var(--color-background0);
+	}
+
+	:root {
+		--font-primary: 'Monorale', Arial, Helvetica, sans-serif;
+		--font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+		--value-border-radius: 16px;
+		--value-border-radius-small: 8px;
+	}
+
+    [data-background="hidden"] .background {
+        display: none;
+    }
+</style>
+
+<script is:inline>
+	const theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+	const background = localStorage.getItem("background");
+	const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+	if (theme !== preferredTheme) {
+		document.documentElement.dataset.theme = theme;
+	}else {
+		localStorage.removeItem("theme");
+	}
+
+	if (background === "hidden") {
+		document.documentElement.dataset.background = "hidden";
+	} else {
+		delete document.documentElement.dataset.background;
+	}
+</script>

@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+
+import BlobLeft from "../assets/blob-left.svg";
+import BlobRight from "../assets/blob-right.svg";
+---
+<div class="background">
+	<div class="blobs">
+		<Image
+			class="blob blob--left"
+			src={BlobLeft}
+			alt="Left blob"
+			loading="eager"
+		/>
+		<Image
+			class="blob blob--right"
+			src={BlobRight}
+			alt="Right blob"
+			loading="eager"
+		/>
+	</div>
+</div>
+
+<style>
+	.blobs {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: -1;
+		overflow: hidden;
+		--blob-size: 1000px;
+	}
+
+	.blob {
+		position: absolute;
+		width: var(--blob-size);
+		height: var(--blob-size);
+		transform-origin: center;
+	}
+
+	.blob--left {
+		left: calc(var(--blob-size) * -0.17);
+		bottom: calc(var(--blob-size) * -0.75);
+		transform: rotate(-60deg) scale(1, 2)
+	}
+	
+	.blob--right {
+		right: calc(var(--blob-size) * -0);
+		top: calc(var(--blob-size) * -0.75);
+		transform: rotate(120deg) scale(1, 2)
+	}
+</style>

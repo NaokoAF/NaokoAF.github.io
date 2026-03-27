@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { Props as PostProps } from "./Post.astro";
+import Post from "./Post.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+	posts: PostProps[],
+	offset?: number,
+	limit?: number,
+}
+
+const { posts, offset, limit, ...props } = Astro.props;
+---
+<div class="post-list" {...props}>
+	{
+		posts
+			.sort((a, b) => b.date.getTime() - a.date.getTime())
+			.slice(offset ?? 0, limit && (offset ?? 0 + limit))
+			.map((post) => (
+				<Post {...post} />
+			))
+	}
+</div>
+
+<style>
+	.post-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+</style>

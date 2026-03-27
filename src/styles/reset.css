@@ -1,0 +1,265 @@
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 100;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Thin.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 100;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-ThinItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 200;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 200;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-ExtraLightItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 300;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Light.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 300;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-LightItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 400;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 400;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-Italic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 500;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 500;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-MediumItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 600;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-SemiBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 600;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-SemiBoldItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 700;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 700;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-BoldItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 800;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 800;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-ExtraBoldItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 900;
+	font-style: normal;
+	src: url('/fonts/monorale/Monorale-Black.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Monorale';
+	font-weight: 900;
+	font-style: italic;
+	src: url('/fonts/monorale/Monorale-BlackItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-BoldItalic.woff2') format('woff2');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-ExtraBoldItalic.woff2') format('woff2');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-ExtraBold.woff2') format('woff2');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono/JetBrainsMono-MediumItalic.woff2') format('woff2');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* From https://github.com/withstudiocms/ui */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box !important;
+}
+
+html,
+body {
+	margin: 0;
+}
+
+body {
+	font-family: var(--font-mono);
+	font-variant-ligatures: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+code {
+	overflow-wrap: anywhere;
+	font-family: var(--font-mono);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: pretty;
+	color: var(--color-text)
+}
+
+p, li, th, td {
+	color: var(--color-text)
+}
+
+button {
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0;
+}
+
+p:last-of-type {
+	margin-bottom: 0;
+}
+
+pre,
+pre *,
+code {
+	font-family: var(--font-mono);
+	font-variant-ligatures: normal;
+	line-height: 1;
+}
+
+hr {
+	height: 2px;
+	border: none;
+	background-color: var(--color-surface1);
+}
