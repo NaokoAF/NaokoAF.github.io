@@ -1,6 +1,7 @@
 export const openGraph = {
 	author: "naokoaf",
 	twitterHandle: "@NaokoAsF",
+	defaultDescription: "a girl who uses the internet too much.",
 	defaultImage: "/assets/open-graph.webp",
 	home: {
 		pageTitle: "nao / home",

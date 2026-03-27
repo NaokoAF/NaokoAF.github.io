@@ -32,14 +32,14 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 		<meta name="generator" content={Astro.generator} />
 
 		<title>{pageTitle ?? title}</title>
-		{description && <meta name="description" content={description} />}
+		<meta name="description" content={description ?? openGraph.defaultDescription} />
 		<meta name="theme-color" content={themeColors.dark.accent}>
 
 		<link rel="canonical" href={Astro.url} />
 
 		<meta name="og:title" content={title} />
-		{description && <meta name="og:description" content={description} />}
 		<meta name="og:image" content={image?.src || openGraph.defaultImage} />
+		<meta name="og:description" content={description ?? openGraph.defaultDescription} />
 		<meta name="og:url" content={Astro.site} />
 		{!article && <meta name="og:type" content="website" />}
 		<meta name="og:locale" content="en" />
@@ -60,8 +60,8 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 			<meta name="twitter:creator" content={openGraph.twitterHandle} />
 		)}
 		<meta name="twitter:title" content={title} />
-		{description && <meta name="twitter:description" content={description} />}
 		<meta name="twitter:image" content={image?.src || openGraph.defaultImage} />
+		<meta name="twitter:description" content={description ?? openGraph.defaultDescription} />
 
 		<link rel="alternate" type="application/rss+xml" title={openGraph.blog.title} href="/blog/rss.xml" />
 	</head>
