@@ -28,9 +28,6 @@ jobs:
             node-version: 24
             package-manager: bun@latest
             build-cmd: bun run build
-            cache: true
-            cache-dir: nodule_modules/.astro
-            out-dir: dist
 
   deploy:
     needs: build
