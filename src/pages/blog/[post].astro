@@ -45,7 +45,7 @@ const { Content, headings } = await render(post);
 					href: `/blog?tags=${tag}`
 				}))}
 			/>
-			{post.data.tags.length == 0 && <p>no tags</p>}
+			{post.data.tags.length === 0 && <p>no tags</p>}
 		</Card>
 		<Card class="contents-card" title="contents" icon="lucide/table-of-contents">
 			<TableOfContents title={post.data.title} headings={headings}/>

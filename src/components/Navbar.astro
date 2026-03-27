@@ -265,7 +265,7 @@ const path = Astro.url.pathname;
 		toggleThemeButton.addEventListener("click", () => {
 			const defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 			const currentTheme = document.documentElement.dataset.theme ?? defaultTheme;
-			const newTheme = currentTheme == "dark" ? "light" : "dark";
+			const newTheme = currentTheme === "dark" ? "light" : "dark";
 
 			// only override if different from browser preferences
 			if (newTheme !== defaultTheme) {
