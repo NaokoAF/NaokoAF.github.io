@@ -7,12 +7,11 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"postbuild": "pagefind --site dist/client"
+		"postbuild": "pagefind --site dist"
 	},
 	"dependencies": {
 		"@astro-community/astro-embed-youtube": "^0.5.10",
 		"@astrojs/mdx": "5.0.0",
-		"@astrojs/node": "10.0.0",
 		"@astrojs/rss": "^4.0.17",
 		"@astrojs/sitemap": "3.7.1",
 		"@iconify-json/lucide": "^1.2.20",
