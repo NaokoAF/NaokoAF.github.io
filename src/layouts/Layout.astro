@@ -101,6 +101,10 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 	}
 
 	@media screen and (max-width: 1380px) {
+		main {
+			padding: 2rem 2rem;
+		}
+
 		.layout-grid {
 			grid-template-columns: 1fr;
 		}
@@ -108,12 +112,12 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 
 	@media screen and (max-width: 640px) {
 		main {
-			padding-top: 0;
+			padding: 0;
 			gap: 1rem;
 		}
 
 		.layout-grid {
-			margin: 0 1rem;
+			padding: 0 1rem 1rem;
 			gap: 1rem;
 		}
 	}
@@ -150,9 +154,9 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 		--value-border-radius-small: 8px;
 	}
 
-    [data-background="hidden"] .background {
-        display: none;
-    }
+	[data-background="hidden"] .background {
+		display: none;
+	}
 </style>
 
 <script is:inline>
