@@ -11,13 +11,13 @@ const { class: className, ...props } = Astro.props;
 	<slot />
 </ul>
 
-<style is:global>
+<style>
 	.overview-list {
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
 	}
-	.overview-list li {
+	.overview-list :global(li) {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -25,7 +25,7 @@ const { class: className, ...props } = Astro.props;
 		margin-bottom: 0.75rem;
 	}
 
-	.overview-list li:last-of-type {
+	.overview-list :global(li:last-of-type) {
 		margin-bottom: 0;
 	}
 </style>

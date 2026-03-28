@@ -97,34 +97,32 @@ const info =	[
     .article__info {
         margin: 0;
     }
-</style>
 
-<style is:global>
     .article__content {
         line-height: 1.6;
     }
 
-	.article__content p:has(img),
-	.article__content .youtube{
+	.article__content :global(p:has(img)),
+	.article__content :global(.youtube) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	.article__content p img {
+	.article__content :global(p img) {
 		max-width: 100%;
 		height: 100%;
 		border-radius: var(--value-border-radius-small);
 	}
 
-	.article__content code:not(.expressive-code code) {
+	.article__content :global(code:not(.expressive-code code)) {
 		background-color: var(--color-background1);
 		padding: 0.125rem 0.3rem;
 		font-size: 0.925rem;
 		border-radius: var(--value-border-radius-small);
 	}
 
-	.article__content blockquote {
+	.article__content :global(blockquote) {
 		background-color: var(--color-background1);
 		border-left: 2px solid var(--color-accent);
 		padding: 0.75rem 1rem;
@@ -132,44 +130,48 @@ const info =	[
 		width: 100%;
 	}
 
-	.article__content blockquote p {
+	.article__content :global(blockquote p) {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
 
-	.article__content table {
+	.article__content :global(table) {
 		margin-top: 1rem;
 		text-align: left;
 		border-spacing: 0;
 		border-collapse: collapse;
 	}
 
-	.article__content table th {
+	.article__content :global(table th) {
 		padding: 0.5rem 1.5rem 0.5rem 0;
 		border-bottom: 1px solid var(--color-surface1);
 	}
 
-	.article__content table tbody {
+	.article__content :global(table tbody) {
 		margin-top: 1rem;
 	}
 
-	.article__content table tbody tr {
+	.article__content :global(table tbody tr) {
 		border-bottom: 1px solid var(--color-surface1);
 	}
 
-	.article__content table tbody tr td {
+	.article__content :global(table tbody tr td) {
 		padding: 0.5rem 1.5rem 0.5rem 0;
 	}
 
-	.article__content a {
+	/*
+	markdown links always go inside a paragraph, header, or something similar
+	if they're inside a div, its likely from a component we shouldn't touch
+	*/
+	.article__content :global(:not(div) a) {
 		color: var(--color-accent);
 	}
 
-	.article__content a:hover {
+	.article__content :global(:not(div) a:hover) {
 		text-decoration: underline;
 	}
 
-	.article__content a:focus-visible {
+	.article__content :global(:not(div) a:focus-visible) {
 		color: var(--color-text-on-accent);
 		background-color: var(--color-accent);
 		border-radius: var(--value-border-radius-small);

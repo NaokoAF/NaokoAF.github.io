@@ -97,6 +97,16 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 		padding-bottom: 2rem;
 	}
 
+	.layout-grid :global(.layout-grid__left),
+	.layout-grid :global(.layout-grid__right) {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		gap: 1.5rem;
+		min-width: 0;
+	}
+
 	@media screen and (max-width: 1380px) {
 		main {
 			padding: 0 2rem;
@@ -116,29 +126,15 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 			padding: 0 1rem 1rem;
 			gap: 1rem;
 		}
-	}
-</style>
 
-<Fragment set:html={`<style>${generateCss()}</style>`} />
-
-<style is:global>
-	.layout-grid__left,
-	.layout-grid__right {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		height: 100%;
-		gap: 1.5rem;
-		min-width: 0;
-	}
-
-	@media screen and (max-width: 640px) {
-		.layout-grid__left,
-		.layout-grid__right {
+		.layout-grid :global(.layout-grid__left),
+		.layout-grid :global(.layout-grid__right) {
 			gap: 1rem;
 		}
 	}
+</style>
 
+<style is:global>
 	html {
 		background-color: var(--color-background0);
 	}
@@ -154,6 +150,8 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 		display: none;
 	}
 </style>
+
+<Fragment set:html={`<style>${generateCss()}</style>`} />
 
 <script is:inline>
 	const theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
