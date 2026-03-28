@@ -16,7 +16,7 @@ const Header = href ? 'a' : 'div';
 	<slot name="pre" />
 	<div class="card__container">
 		{title &&
-			<Header class="card__header" href={href}>
+			<Header class="card__header" class:list={{ ["card__header--link"]: href }} href={href}>
 				{icon && <Icon class="card__icon" id={icon} />}
 				<h2 class="card__title">{title}</h2>
 			</Header>
@@ -55,8 +55,10 @@ const Header = href ? 'a' : 'div';
 	.card__title {
 		margin: 0;
 	}
-	
-	a:hover h2 {
+
+	.card__header--link:hover .card__title,
+	.card__header--link:focus-visible .card__title{
 		color: var(--color-accent);
+		text-decoration: underline;
 	}
 </style>

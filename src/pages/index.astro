@@ -51,7 +51,7 @@ const homeEntries = await Promise.all(
 				<OverviewList>{
 					socials.map(social => (
 						<li class="social-link">
-							<a href={social.link}>
+							<a class="social-link__container" href={social.link}>
 								<Icon class="text--accent" id={social.icon}/>
 								<span class="social-link__text">{social.text}</span>
 							</a>
@@ -136,7 +136,7 @@ const homeEntries = await Promise.all(
 		object-fit: cover;
 	}
 
-	.social-link a {
+	.social-link__container {
 		color: var(--color-text);
 		display: flex;
 		flex-direction: row;
@@ -144,14 +144,14 @@ const homeEntries = await Promise.all(
 		align-items: center;
 	}
 
-	.social-link a:hover {
+	.social-link__container:hover {
 		color: var(--color-accent);
-		text-decoration: underline;
+		text-decoration: underline
 	}
 
 	.copy-button {
 		display: none; /* hide by default. show with javascript */
-		color: var(--color-text);
+		color: inherit;
 		cursor: pointer;
 		transition: color .25s ease;
 	}
@@ -162,21 +162,10 @@ const homeEntries = await Promise.all(
 		color: var(--color-accent);
 	}
 
-	.copy-button--active {
-		display: inherit;
-	}
-
-	.copy-button--copied .copy-button__icon {
-		display: none;
-	}
-
-	.copy-button--copied .copy-button__icon-copied {
-		display: inherit;
-	}
-
-	.copy-button__icon-copied {
-		display: none;
-	}
+	.copy-button--active { display: inherit; }
+	.copy-button--copied .copy-button__icon { display: none; }
+	.copy-button--copied .copy-button__icon-copied { display: inherit; }
+	.copy-button__icon-copied { display: none; }
 
 	.home-entry__content {
 		line-height: 1.6;

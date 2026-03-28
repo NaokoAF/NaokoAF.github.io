@@ -15,8 +15,8 @@ const { header, link, title, thumbnail, ...props } = Astro.props;
 <div class="youtube">
 	<div class="youtube__content">
 		<div class="youtube__header">
-			<a href={link} target="_blank" rel="noopener noreferrer">
-				<h3>{header}</h3>
+			<a class="youtube__header-link" href={link} target="_blank" rel="noopener noreferrer">
+				<h3 class="youtube__header-text">{header}</h3>
 			</a>
 		</div>
 		<YouTube
@@ -29,12 +29,6 @@ const { header, link, title, thumbnail, ...props } = Astro.props;
 </div>
 
 <style>
-	/*.youtube {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}*/
-
 	.youtube__content {
 		width: 100%;
 		max-width: 600px;
@@ -48,12 +42,18 @@ const { header, link, title, thumbnail, ...props } = Astro.props;
 		padding: 0.5rem 0.75rem;
 	}
 
-	.youtube__header h3 {
-		margin: 0;
+	.youtube__header-link {
+		color: var(--color-text);
 	}
 
-	.youtube__header a:hover h3 {
+	.youtube__header-link:hover,
+	.youtube__header-link:focus-visible {
 		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
+	.youtube__header-text {
+		margin: 0;
 	}
 
 	.youtube lite-youtube {
