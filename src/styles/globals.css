@@ -1,11 +1,9 @@
-a {
-	color: var(--color-accent);
-	text-decoration: none;
+.text {
+	color: var(--color-text);
 }
 
-a:hover {
+.text--accent {
 	color: var(--color-accent);
-	text-decoration: underline;
 }
 
 .expressive-code {
@@ -50,14 +48,6 @@ a:hover {
 
 .expressive-code .title::after {
 	border-top: none !important;
-}
-
-.text {
-	color: var(--color-text);
-}
-
-.text--accent {
-	color: var(--color-accent);
 }
 
 @media screen and (max-width: 1380px) {

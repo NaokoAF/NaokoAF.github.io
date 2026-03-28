@@ -188,55 +188,25 @@
 	font-display: swap;
 }
 
-/* From https://github.com/withstudiocms/ui */
-
 *,
 *::before,
 *::after {
 	box-sizing: border-box !important;
 }
 
-html,
-body {
+html, body {
 	margin: 0;
 }
 
 body {
 	font-family: var(--font-mono);
+	color: var(--color-text);
 	font-variant-ligatures: none;
 	-webkit-font-smoothing: antialiased;
 }
 
-input,
-button,
-textarea,
-select {
+input, button, textarea, select {
 	font: inherit;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-code {
-	overflow-wrap: anywhere;
-	font-family: var(--font-mono);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	text-wrap: pretty;
-	color: var(--color-text)
-}
-
-p, li, th, td {
-	color: var(--color-text)
 }
 
 button {
@@ -246,14 +216,20 @@ button {
 	padding: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: anywhere;
+	text-wrap: pretty;
+}
+
 p:last-of-type {
 	margin-bottom: 0;
 }
 
-pre,
-pre *,
 code {
-	font-family: var(--font-mono);
+	overflow-wrap: anywhere;
+}
+
+pre, pre *, code {
 	font-variant-ligatures: normal;
 	line-height: 1;
 }
@@ -262,4 +238,10 @@ hr {
 	height: 2px;
 	border: none;
 	background-color: var(--color-surface1);
+}
+
+/* remove effects from anchors. we add them again in places where it makes sense. */
+a {
+	color: inherit;
+	text-decoration: inherit;
 }
