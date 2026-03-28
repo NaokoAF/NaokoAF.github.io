@@ -48,6 +48,7 @@ const path = Astro.url.pathname;
 		font-family: var(--font-mono);
 		z-index: 50;
 		color: var(--color-text);
+		padding: 2rem 0;
 	}
 
 	.nav__title {
@@ -157,13 +158,17 @@ const path = Astro.url.pathname;
 	@media screen and (max-width: 640px) {
 		.nav {
 			padding: 1rem;
-			transition: background-color .2s ease, padding-bottom .2s ease;
+			transition:
+				background-color .2s ease,
+				margin-bottom .2s ease,
+				padding-bottom .2s ease;
 		}
 
 		.nav--active {
 			padding-bottom: 15rem;
 			background-color: var(--color-background1);
 			border-radius: 0 0 var(--value-border-radius) var(--value-border-radius);
+			margin-bottom: 1rem;
 		}
 
 		.nav-toggle {

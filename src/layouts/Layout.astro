@@ -84,10 +84,6 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 		width: 100%;
 		max-width: 1280px;
 		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		padding: 2rem 0;
 	}
 
 	.layout-grid {
@@ -102,7 +98,7 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 
 	@media screen and (max-width: 1380px) {
 		main {
-			padding: 2rem 2rem;
+			padding: 0 2rem;
 		}
 
 		.layout-grid {
@@ -113,7 +109,6 @@ const { pageTitle, title, description, image, pagefindIgnore, article } = Astro.
 	@media screen and (max-width: 640px) {
 		main {
 			padding: 0;
-			gap: 1rem;
 		}
 
 		.layout-grid {
